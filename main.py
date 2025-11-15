@@ -29,12 +29,13 @@ config = load_config()
 async def on_ready():
     print("🚀 BOT起動しました")
 
-# Cogs 読み込み
-async def setup():
+# Render / Worker で正しく動く Cogs ロード方式
+@bot.event
+async def setup_hook():
     await bot.load_extension("cogs.verify")
-
-bot.loop.run_until_complete(setup())
 
 print("🔌 TOKEN 読み込み確認:", "成功" if TOKEN else "失敗（.env確認しろ）")
 
 bot.run(TOKEN)
+
+
