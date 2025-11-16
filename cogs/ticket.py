@@ -473,16 +473,7 @@ class TicketCog(commands.Cog):
             r = ctx.guild.get_role(rid)
             mentions.append(r.mention if r else f"(ID:{rid})")
         await ctx.send("管理者ロール: " + ", ".join(mentions))
-
-    @commands.command()
-    async def setverifyrole(self, ctx, role: discord.Role):
-        if not self.has_admin_role_member(ctx.author):
-            await ctx.send("権限がありません。")
-            return
-        cfg = load_config()
-        cfg["verify_role_id"] = role.id
-        save_config(cfg)
-        await ctx.send(f"認証ロールを {role.mention} に設定しました。")
+    
 
     @commands.command()
     async def setticketcat(self, ctx, category: discord.CategoryChannel):
@@ -551,5 +542,6 @@ class TicketCog(commands.Cog):
 # -------------------------
 async def setup(bot):
     await bot.add_cog(TicketCog(bot))
+
 
 
