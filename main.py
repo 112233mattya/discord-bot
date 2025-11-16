@@ -33,9 +33,12 @@ async def on_ready():
 @bot.event
 async def setup_hook():
     await bot.load_extension("cogs.verify")
+    await bot.load_extension("cogs.ticket")
+    await bot.load_extension("cogs.autoreply")
 
 print("🔌 TOKEN 読み込み確認:", "成功" if TOKEN else "失敗（.env確認しろ）")
 
 bot.run(TOKEN)
+
 
 
